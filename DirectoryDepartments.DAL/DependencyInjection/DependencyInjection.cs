@@ -17,6 +17,7 @@ namespace DirectoryDepartments.DAL.DependencyInjection
             {
                 options.UseSqlServer(connectionString);
             });
+            services.InitRepositories();
         }
 
         private static void InitRepositories(this IServiceCollection services)
