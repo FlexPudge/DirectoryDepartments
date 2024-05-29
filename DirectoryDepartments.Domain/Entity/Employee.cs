@@ -1,13 +1,12 @@
-﻿using DirectoryDepartments.Domain.Interfaces;
-
-namespace DirectoryDepartments.Domain.Entity
+﻿namespace DirectoryDepartments.Domain.Entity
 {
-    public class Employee : IEntityId<int>
+    public class Employee
     {
         public int Id { get; set; }
         public string FIO { get; set; }
-        public string Gender { get; set; }
+        public int Gender { get; set; }
         public Position Position { get; set; }
-        public bool DriversLicense { get; set; }
+        public int DriversLicense { get; set; }
+        public Division Division { get; set; }
     }
 }
