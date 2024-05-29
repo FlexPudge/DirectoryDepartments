@@ -21,7 +21,9 @@ namespace DirectoryDepartments.DAL.DependencyInjection
 
         private static void InitRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IBaseRepository<Division>, BaseRepository<Division>>();
+            services.AddScoped<IDivisionRepository, DivisionRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
         }
     }
 }
