@@ -11,11 +11,16 @@ namespace DirectoryDepartments.DAL.Configurations
             builder.HasKey(d => d.Id);
             builder.Property(d => d.Id).ValueGeneratedOnAdd();
             builder.HasIndex(d => d.Id).IsUnique();
+            builder.Property(d => d.Name).HasMaxLength(250);
+            builder.Property(d => d.Description).HasMaxLength(250);
             builder.HasOne(d => d.ParentDivision)
                 .WithMany(d => d.SubsidiaryDivisions)
                 .HasForeignKey(d => d.ParentId);
-            builder.Property(d => d.Name).HasMaxLength(250);
-            builder.Property(d => d.Description).HasMaxLength(250);
+
+            builder.HasMany(e => e.Employees)
+                .WithOne(e => e.Division)
+                .HasForeignKey("DivisionId")
+                .IsRequired();
         }
     }
 }
