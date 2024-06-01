@@ -13,14 +13,11 @@ namespace DirectoryDepartments.DAL.Configurations
             builder.HasIndex(d => d.Id).IsUnique();
             builder.Property(d => d.Name).HasMaxLength(250);
             builder.Property(d => d.Description).HasMaxLength(250);
+
             builder.HasOne(d => d.ParentDivision)
                 .WithMany(d => d.SubsidiaryDivisions)
-                .HasForeignKey(d => d.ParentId);
-
-            builder.HasMany(e => e.Employees)
-                .WithOne(e => e.Division)
-                .HasForeignKey("DivisionId")
-                .IsRequired();
+                .HasForeignKey(d => d.ParentId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

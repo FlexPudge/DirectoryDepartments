@@ -12,10 +12,15 @@ namespace DirectoryDepartments.DAL.Configurations
             builder.Property(d => d.Id).ValueGeneratedOnAdd();
             builder.HasIndex(d => d.Id).IsUnique();
             builder.Property(d => d.FIO).HasMaxLength(250);
-/*            builder.HasOne(p => p.Division)
-                .WithMany(b => b.Employees)
-                .HasForeignKey(p => p.Id)
-                .HasPrincipalKey(b => b.Employees);*/
+
+            builder.HasOne(x => x.Division)
+                .WithMany(x => x.Employees)
+                .HasForeignKey(x => x.Id)
+                .IsRequired();
+
+            builder.HasOne(d => d.Position)
+                .WithMany(p => p.Employee)
+                .HasForeignKey(d => d.Id).IsRequired();
         }
     }
 }
